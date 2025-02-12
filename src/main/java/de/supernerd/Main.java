@@ -15,7 +15,7 @@ public class Main {
 
         Person person1 = new Person(UUID.randomUUID(), "Max Maier", DaysOfWeek.SONNTAG);
         Person person2 = new Person(UUID.randomUUID(), "Rudolf Müller", DaysOfWeek.MONTAG);
-        Person person3 = new Person(UUID.randomUUID(), "Max Maier", DaysOfWeek.DIENSTAG);
+        Person person3 = new Person(UUID.randomUUID(), "Franz Dorf", DaysOfWeek.DIENSTAG);
         Person person4 = new Person(UUID.randomUUID(), "Felix Mayer", DaysOfWeek.MITTWOCH);
 
         PersonRepository personRepository = new PersonRepository();
@@ -24,12 +24,12 @@ public class Main {
         personRepository.addPerson(person3);
         personRepository.addPerson(person4);
 
-        Optional<Person> result = personRepository.search(person1.id());
+        Optional<Person> result = personRepository.search(person4.id());
 
         if(result.isEmpty()) {
             System.out.println("Person nicht gefunden!");
         } else {
-            System.out.println(result);
+            System.out.println(result.get().name() + ", Lieblingstag: " + result.get().favoriteday());
         }
 
         result = personRepository.search(UUID.randomUUID());
@@ -37,7 +37,7 @@ public class Main {
         if(result.isEmpty()) {
             System.out.println("Person nicht gefunden!");
         } else {
-            System.out.println(result);
+            System.out.println(result.get().name() + ", Lieblingstag: " + result.get().favoriteday());
         }
     }
 
